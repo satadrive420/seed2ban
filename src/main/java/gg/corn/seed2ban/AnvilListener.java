@@ -10,6 +10,8 @@ import org.bukkit.inventory.AnvilInventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+
+
 public class AnvilListener implements Listener {
     private final String seedRegex;
 
@@ -38,12 +40,8 @@ public class AnvilListener implements Listener {
                             return; // Player is exempt, do nothing
                         }
                         // Schedule the command to be run on the main server thread
-                        Bukkit.getScheduler().runTask(Seed2ban.plugin, () -> {
-                            // Construct and execute the command
 
-                            String command = "ipban " + playerName + " Attempting to leak the world seed.";
-                            Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), command);
-                        });
+                        Seed2ban.commandOnDetection(playerName);
 
                     }
                 }

@@ -29,11 +29,7 @@ public class CommandListener implements Listener {
                 return; // Player is exempt, do nothing
             }
 
-            Bukkit.getScheduler().runTask(Seed2ban.plugin, () -> {
-                // Construct and execute the command
-                String banCommand = "ipban " + playerName + " Attempting to leak the world seed.";
-                Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), banCommand);
-            });
+            Seed2ban.commandOnDetection(playerName);
         }
     }
 }

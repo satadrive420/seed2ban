@@ -9,6 +9,8 @@ import org.bukkit.event.player.AsyncPlayerChatEvent;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+
+
 public class ChatListener implements Listener {
     private String regex;
 
@@ -36,12 +38,7 @@ public class ChatListener implements Listener {
                 return; // Player is exempt, do nothing
             }
 
-            // Schedule the command to be run on the main server thread
-            Bukkit.getScheduler().runTask(Seed2ban.plugin, () -> {
-                // Construct and execute the command
-                String command = "ipban " + playerName + " Attempting to leak the world seed.";
-                Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), command);
-            });
+            Seed2ban.commandOnDetection(playerName);
         }
     }
 }

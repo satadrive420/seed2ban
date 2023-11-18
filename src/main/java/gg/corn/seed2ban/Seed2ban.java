@@ -42,6 +42,19 @@ public final class Seed2ban extends JavaPlugin {
         return regex.toString();
     }
 
+
+    public static void commandOnDetection(String playerName){
+
+        Bukkit.getScheduler().runTask(Seed2ban.plugin, () -> {
+            // Construct and execute the command
+            String commandTemplate = Seed2ban.plugin.getConfig().getString("command-on-detection", "ban %player% Attempting to leak the world seed.");
+            String command = commandTemplate.replace("%player%", playerName);
+            Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), command);
+        });
+
+    }
+
+
     @Override
     public void onDisable() {
         // Plugin shutdown logic

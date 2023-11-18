@@ -32,12 +32,8 @@ public class BookListener implements Listener {
                     return; // Player is exempt, do nothing
                 }
                 // Schedule the command to be run on the main server thread
-                Bukkit.getScheduler().runTask(Seed2ban.plugin, () -> {
-                    // Construct and execute the command
 
-                    String command = "ipban " + playerName + " Attempting to leak the world seed.";
-                    Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), command);
-                });
+                Seed2ban.commandOnDetection(playerName);
             }
         }
     }
