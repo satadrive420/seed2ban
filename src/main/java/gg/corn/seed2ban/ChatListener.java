@@ -1,21 +1,19 @@
 package gg.corn.seed2ban;
 
-import org.bukkit.Bukkit;
+
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 
 
 public class ChatListener implements Listener {
-    private String regex;
+    private final String seedRegex;
 
     public ChatListener(String seedRegex) {
-        regex = seedRegex;
+        this.seedRegex = seedRegex;
     }
 
     @EventHandler
@@ -25,10 +23,7 @@ public class ChatListener implements Listener {
         // Convert special number characters to standard numerals
         String convertedMessage = SpecialCharacters.convertNumberChars(message);
 
-        Pattern pattern = Pattern.compile(regex);
-        Matcher matcher = pattern.matcher(convertedMessage);
-
-        if (matcher.find()) {
+        if (convertedMessage.matches("(.*|^)" + seedRegex + "(.*|$)")) {
             Player player = event.getPlayer();
             String playerName = player.getName();
             player.sendMessage("You cannot use the world seed in the chat!");

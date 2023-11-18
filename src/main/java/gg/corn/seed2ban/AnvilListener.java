@@ -1,8 +1,7 @@
 package gg.corn.seed2ban;
 
-import org.bukkit.Bukkit;
+
 import org.bukkit.entity.HumanEntity;
-import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
@@ -33,9 +32,6 @@ public class AnvilListener implements Listener {
                     String playerName = player.getName();
                     String convertedItemName = SpecialCharacters.convertNumberChars(meta.getDisplayName());
 
-                    // Debugging
-                    System.out.println("Converted Item Name: " + convertedItemName);
-                    System.out.println("Seed Regex: " + seedRegex);
 
                     if (convertedItemName.matches("(.*|^)" + seedRegex + "(.*|$)")) {
                         if (!player.hasPermission("seed2ban.exempt")) {
