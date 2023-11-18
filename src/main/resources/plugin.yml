@@ -3,7 +3,15 @@ version: '${project.version}'
 main: gg.corn.seed2ban.Seed2ban
 api-version: 1.13
 
+commands:
+  seed2banreload:
+    description: Reloads the configuration for seed2ban.
+    usage: /<command>
+
 permissions:
   seed2ban.exempt:
-    description: Exempts a player from being banned for using the seed in commands.
+    description: Exempts players from seed2ban's checks.
+    default: op
+  seed2ban.reload:
+    description: Reloads the configuration for seed2ban.
     default: op

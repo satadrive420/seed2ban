@@ -1,1 +1,1 @@
-﻿command-on-detection: 'ban'
+﻿command-on-detection: "ban %player% Attempting to leak the world seed."

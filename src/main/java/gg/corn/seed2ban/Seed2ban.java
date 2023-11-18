@@ -1,7 +1,10 @@
 package gg.corn.seed2ban;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.World;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -26,6 +29,8 @@ public final class Seed2ban extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new SignChangeListener(seedRegex), plugin);
         getServer().getPluginManager().registerEvents(new AnvilListener(seedRegex), plugin);
         getServer().getPluginManager().registerEvents(new BookListener(seedRegex), plugin);
+
+        this.saveDefaultConfig();
     }
 
     public String createFlexibleRegexPattern(long seed) {
@@ -54,6 +59,16 @@ public final class Seed2ban extends JavaPlugin {
 
     }
 
+    @Override
+    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+        if (command.getName().equalsIgnoreCase("seed2banreload")) {
+            // Reload the config
+            reloadConfig();
+            sender.sendMessage(ChatColor.GREEN + "[seed2ban] Configuration reloaded.");
+            return true;
+        }
+        return false;
+    }
 
     @Override
     public void onDisable() {
