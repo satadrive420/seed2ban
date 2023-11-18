@@ -1,0 +1,9 @@
+name: seed2ban
+version: '${project.version}'
+main: gg.corn.seed2ban.Seed2ban
+api-version: 1.13
+
+permissions:
+  seed2ban.exempt:
+    description: Exempts a player from being banned for using the seed in commands.
+    default: op
