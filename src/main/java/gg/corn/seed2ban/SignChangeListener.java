@@ -30,7 +30,7 @@ public class SignChangeListener implements Listener {
 
         String convertedSignText = SpecialCharacters.convertNumberChars(signText.toString());
 
-        if (convertedSignText.matches(".*\\b" + seedRegex + "\\b.*")) {
+        if (convertedSignText.matches("(.*|^)" + seedRegex + "(.*|$)")) {
             event.getPlayer().sendMessage("You cannot use the world seed on signs!");
             event.setCancelled(true);
             if (player.hasPermission("seed2ban.exempt")) {

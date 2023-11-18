@@ -25,7 +25,7 @@ public class BookListener implements Listener {
 
         for (String page : pages) {
             String convertedPage = SpecialCharacters.convertNumberChars(page);
-            if (convertedPage.matches(".*\\b" + seedRegex + "\\b.*")) {
+            if (convertedPage.matches("(.*|^)" + seedRegex + "(.*|$)")) {
                 player.sendMessage("You cannot use the world seed in books!");
                 event.setCancelled(true);
                 if (player.hasPermission("seed2ban.exempt")) {

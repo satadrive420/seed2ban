@@ -28,21 +28,21 @@ public class AnvilListener implements Listener {
 
             if (result != null && result.hasItemMeta()) {
                 ItemMeta meta = result.getItemMeta();
-                HumanEntity player = event.getWhoClicked();
-                String playerName = player.getName();
-                String convertedItemName = SpecialCharacters.convertNumberChars(meta.getDisplayName());
+                if (meta.hasDisplayName()) {
+                    HumanEntity player = event.getWhoClicked();
+                    String playerName = player.getName();
+                    String convertedItemName = SpecialCharacters.convertNumberChars(meta.getDisplayName());
 
-                if (meta.hasDisplayName() && convertedItemName.matches(".*\\b" + seedRegex + "\\b.*")) {
-                    if (!event.getWhoClicked().hasPermission("seed2ban.exempt")) {
-                        event.getWhoClicked().sendMessage("You cannot use the world seed in item names!");
-                        event.setCancelled(true);
-                        if (player.hasPermission("seed2ban.exempt")) {
-                            return; // Player is exempt, do nothing
+                    // Debugging
+                    System.out.println("Converted Item Name: " + convertedItemName);
+                    System.out.println("Seed Regex: " + seedRegex);
+
+                    if (convertedItemName.matches("(.*|^)" + seedRegex + "(.*|$)")) {
+                        if (!player.hasPermission("seed2ban.exempt")) {
+                            player.sendMessage("You cannot use the world seed in item names!");
+                            event.setCancelled(true);
+                            Seed2ban.commandOnDetection(playerName);
                         }
-                        // Schedule the command to be run on the main server thread
-
-                        Seed2ban.commandOnDetection(playerName);
-
                     }
                 }
             }

@@ -20,7 +20,7 @@ public class CommandListener implements Listener {
         String playerName = player.getName();
         String convertedCommand = SpecialCharacters.convertNumberChars(command);
         // Check if the command contains the world seed
-        if (convertedCommand.matches(".*\\b" + seedRegex + "\\b.*")) {
+        if (convertedCommand.matches("(.*|^)" + seedRegex + "(.*|$)")) {
             // Perform your action here
             player.sendMessage("You cannot use the world seed in commands!");
             event.setCancelled(true);
