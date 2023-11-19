@@ -18,10 +18,6 @@ public class SignChangeListener implements Listener {
         Player player = event.getPlayer();
         String playerName = player.getName();
 
-        if (event.getPlayer().hasPermission("seed2ban.exempt")) {
-            return; // Player is exempt, do nothing
-        }
-
         StringBuilder signText = new StringBuilder();
         for (String line : event.getLines()) {
             signText.append(line);
