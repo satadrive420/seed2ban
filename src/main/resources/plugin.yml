@@ -6,6 +6,8 @@ api-version: 1.13
 commands:
   seed2banreload:
     description: Reloads the configuration for seed2ban.
+    permission: seed2ban.reload
+    permission-message: You do not have permission!
     usage: /<command>
 
 permissions:
